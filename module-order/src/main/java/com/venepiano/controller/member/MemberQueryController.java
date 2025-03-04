@@ -13,13 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-
 @RequiredArgsConstructor
 public class MemberQueryController {
     private final MemberQueryService memberQueryService;
 
     @GetMapping(value = "/api/v1/members")
-    public ResponseEntity<GeneralResponseBody<List<MemberResponseBody>>> getMembers(@RequestParam(value = "teamId") String teamId) {
+    public ResponseEntity<GeneralResponseBody<List<MemberResponseBody>>> getMembers(
+            @RequestParam(value = "teamId") String teamId
+    ) {
         List<MemberResponseBody> result = memberQueryService.findMembersByTeamId(teamId)
                 .stream()
                 .map(MemberResponseBody::from)
