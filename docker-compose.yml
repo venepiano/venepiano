@@ -1,23 +1,15 @@
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres:latest
-    container_name: postgres_oracle_migration
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: oracle
-      POSTGRES_DB: oracle_migration
+  oracle:
+    image: oracleinanutshell/oracle-xe-11g
+    container_name: oracle
+    hostname: oracle
+    restart: always
     ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    restart: unless-stopped
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-volumes:
-  postgres_data:
+      - 1521:1521
+    environment:
+      ORACLE_SID: XE
+      ORACLE_PWD: oracle
+      ORACLE_USERNAME: system
+      ORACLE_ALLOW_REMOTE: true
