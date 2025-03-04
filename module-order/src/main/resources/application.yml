@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    include:
+      - payment
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/oracle_migration
+    username: postgres
+    password: oracle
+    driver-class-name: org.postgresql.Driver
+
+mybatis:
+  mapper-locations: classpath:mappers/**/*.xml
+  type-aliases-package: com.venepiano.domain
+  type-handlers-package: com.venepiano.core.handler
+  configuration:
+    map-underscore-to-camel-case: true

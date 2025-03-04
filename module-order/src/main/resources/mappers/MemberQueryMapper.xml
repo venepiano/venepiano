@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.venepiano.repository.mapper.member.MemberQueryMapper">
+    <resultMap id="memberResultMap" type="com.venepiano.domain.member.Member">
+        <id property="mbrId" column="MBR_ID"/>
+        <result property="custCoCd" column="CUST_CO_CD"/>
+        <result property="name" column="NAME"/>
+        <result property="email" column="EMAIL"/>
+        <result property="phone" column="PHONE"/>
+        <result property="birthDate" column="BIRTH_DATE"/>
+        <result property="gender" column="GENDER"
+                typeHandler="com.venepiano.repository.core.handler.GenderTypeHandler"/>
+        <result property="joinDate" column="JOIN_DATE"/>
+        <result property="status" column="STATUS"
+                typeHandler="com.venepiano.repository.core.handler.MemberStatusTypeHandler"/>
+        <result property="teamId" column="TEAM_ID"/>
+        <result property="deptId" column="DEPT_ID"/>
+        <result property="divId" column="DIV_ID"/>
+        <result property="createdAt" column="CREATED_DATE"/>
+        <result property="updatedAt" column="UPDATED_DATE"/>
+    </resultMap>
+
+    <!-- 공통으로 사용할 SELECT 컬럼 목록 정의 -->
+    <sql id="memberColumns">
+        MBR_ID,
+        CUST_CO_CD,
+        NAME,
+        EMAIL,
+        PHONE,
+        BIRTH_DATE,
+        GENDER,
+        JOIN_DATE,
+        STATUS,
+        TEAM_ID,
+        DEPT_ID,
+        DIV_ID,
+        CREATED_DATE,
+        UPDATED_DATE
+    </sql>
+
+    <!-- ID로 회원 조회 -->
+    <select id="findById" resultMap="memberResultMap">
+        SELECT
+        <include refid="memberColumns"/>
+        FROM
+        MEMBER
+        WHERE
+        MBR_ID = #{mbrId}
+    </select>
+
+    <!-- 모든 회원 조회 -->
+    <select id="findAll" resultMap="memberResultMap">
+        SELECT
+        <include refid="memberColumns"/>
+        FROM
+        MEMBER
+    </select>
+
+    <!-- 팀 ID로 회원 목록 조회 -->
+    <select id="findByTeam" resultMap="memberResultMap">
+        SELECT
+        <include refid="memberColumns"/>
+        FROM
+        MEMBER
+        WHERE
+        TEAM_ID = #{teamId}
+    </select>
+
+    <!-- 부서 ID로 회원 목록 조회 -->
+    <select id="findByDepartment" resultMap="memberResultMap">
+        SELECT
+        <include refid="memberColumns"/>
+        FROM
+        MEMBER
+        WHERE
+        DEPT_ID = #{deptId}
+    </select>
+
+    <!-- 본부 ID로 회원 목록 조회 -->
+    <select id="findByDivision" resultMap="memberResultMap">
+        SELECT
+        <include refid="memberColumns"/>
+        FROM
+        MEMBER
+        WHERE
+        DIV_ID = #{divId}
+    </select>
+
+    <!-- 회원 상태로 회원 목록 조회 -->
+    <select id="findByStatus" resultMap="memberResultMap">
+        SELECT
+        <include refid="memberColumns"/>
+        FROM
+        MEMBER
+        WHERE
+        STATUS = #{status}
+    </select>
+
+    <!-- 회사 코드로 회원 목록 조회 -->
+    <select id="findByCompany" resultMap="memberResultMap">
+        SELECT
+        <include refid="memberColumns"/>
+        FROM
+        MEMBER
+        WHERE
+        CUST_CO_CD = #{custCoCd}
+    </select>
+</mapper>

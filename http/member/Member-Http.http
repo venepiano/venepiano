@@ -1,0 +1,5 @@
+### 1. 컨텐츠 등록
+
+GET {{baseUrl}}/api/v1/members?teamId=TEAM001
+Content-Type: application/json
+Accept: */*
