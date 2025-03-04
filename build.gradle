@@ -8,6 +8,7 @@ plugins {
 apply from: 'gradle/spring.gradle'
 apply from: 'gradle/junit.gradle'
 apply from: 'gradle/lombok.gradle'
+apply from: 'gradle/mybatis.gradle'
 
 allprojects {
 
