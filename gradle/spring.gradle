@@ -1,0 +1,30 @@
+subprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    tasks.named('bootJar') {
+        enabled = false // 기본적으로 비활성화
+    }
+    tasks.named('jar') {
+        enabled = true // 기본적으로 jar 활성화
+    }
+
+    if (name == 'module-order') {
+        tasks.named('bootJar') {
+            enabled = true
+            mainClass.set('com.api.ModuleOrderApplication') // mainClass 설정
+        }
+
+        tasks.named('jar') {
+            enabled = false
+        }
+    }
+
+    if (!name.contains('domain')) {
+        dependencies {
+            implementation 'org.springframework.boot:spring-boot-starter'
+            testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        }
+    }
+}

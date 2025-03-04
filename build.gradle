@@ -1,0 +1,42 @@
+plugins {
+    id 'java-library'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'checkstyle'
+}
+
+apply from: 'gradle/spring.gradle'
+apply from: 'gradle/junit.gradle'
+apply from: 'gradle/lombok.gradle'
+
+allprojects {
+
+    group = "${projectGroup}"
+    version = "${applicationVersion}"
+    sourceCompatibility = project.javaVersion
+
+    repositories {
+        mavenCentral()
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+    }
+
+    tasks.withType(Checkstyle).configureEach {
+        reports {
+            xml.required = true
+            html.required = true
+        }
+    }
+
+    checkstyle {
+        maxWarnings = 0
+        configFile = file("config/checkstyle/naver-checkstyle-rules.xml")
+        configProperties = ["suppressionFile": "config/checkstyle/naver-checkstyle-suppressions.xml"]
+    }
+}
+
+bootJar {
+    enabled = false
+}

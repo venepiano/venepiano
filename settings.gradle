@@ -1,0 +1,17 @@
+pluginManagement {
+    plugins {
+        id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
+        id 'org.springframework.boot' version "${springBootVersion}"
+        id 'checkstyle'
+    }
+
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'venepiano'
+
+include 'module-order'
+include 'module-payment'
