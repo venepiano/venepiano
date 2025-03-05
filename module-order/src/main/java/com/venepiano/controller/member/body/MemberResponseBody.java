@@ -32,6 +32,11 @@ public class MemberResponseBody {
     private LocalDateTime updatedAt;
 
     public static MemberResponseBody from(Member member) {
+
+        if (member == null) {
+            return null;
+        }
+
         return MemberResponseBody.builder()
                 .mbrId(member.getMbrId())
                 .custCoCd(member.getCustCoCd())
@@ -48,4 +53,5 @@ public class MemberResponseBody {
                 .updatedAt(member.getUpdatedAt())
                 .build();
     }
+
 }

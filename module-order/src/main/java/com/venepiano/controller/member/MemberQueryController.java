@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class MemberQueryController {
+
     private final MemberQueryService memberQueryService;
 
     @GetMapping(value = "/api/v1/members")
@@ -28,4 +29,5 @@ public class MemberQueryController {
 
         return new ResponseEntity<>(GeneralResponseBody.from(result), HttpStatus.OK);
     }
+
 }
