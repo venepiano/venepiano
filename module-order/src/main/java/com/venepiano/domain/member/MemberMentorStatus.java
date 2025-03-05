@@ -3,9 +3,9 @@ package com.venepiano.domain.member;
 import lombok.Getter;
 
 @Getter
-public enum Gender {
+public enum MemberMentorStatus {
 
-    M,
-    F;
+    A, // Active
+    I; // Inactive
 
 }

@@ -10,7 +10,8 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Member {
+public class Member { // 멤버
+    
     private String mbrId;
     private String custCoCd;
     private String name;
@@ -25,4 +26,5 @@ public class Member {
     private String divId;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    
 }
