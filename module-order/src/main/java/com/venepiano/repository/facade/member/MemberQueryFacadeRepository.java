@@ -11,10 +11,12 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 public class MemberQueryFacadeRepository {
+
     private final MemberQueryMapper memberQueryMapper;
 
     @Transactional(readOnly = true)
     public List<Member> findMembersByTeamId(String teamId) {
         return memberQueryMapper.findByTeam(teamId);
     }
+
 }

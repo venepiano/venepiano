@@ -1,0 +1,8 @@
+# @name 상품 카테고리 계층별 조회
+
+GET {{baseUrl}}/api/v1/product-categories/hierarchy
+Content-Type: application/json
+Accept: */*
+
+###
+
