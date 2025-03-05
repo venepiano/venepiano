@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductCategoryHierarchyResponseBody {
+
     private ProductCategoryField category;
     private List<ProductCategoryHierarchyResponseBody> subCategories;
 
@@ -50,4 +51,5 @@ public class ProductCategoryHierarchyResponseBody {
                 .subCategories(convertedSubCategories)
                 .build();
     }
+
 }
